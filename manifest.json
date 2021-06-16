@@ -1,0 +1,56 @@
+{
+    "name": "Etiquetas",
+    "version": "3.5",
+    "content_security_policy":"script-src 'self'  https://ajax.googleapis.com https://code.jquery.com https://restcountries.eu https://cdnjs.cloudflare.com; object-src 'self'",
+    "icons": {
+        "128": "128.png"
+        },
+    "manifest_version": 2,
+    "description": "NUEVO MODO: ALT+SHIFT+E PARA ETIQUETAR!",
+    "permissions": ["tabs"], 
+    "browser_action": {
+      "default_icon": "128.png",
+      "default_popup": "/popupPlugin/popup.html",
+      "default_title": "Etiquetas!"
+    },
+   
+    "background": {
+        "scripts": ["bg.js"],
+        "persistent": true
+      },
+      "commands": {
+        "toggle-feature": {
+          "suggested_key": {
+            "default": "Ctrl+Shift+3",
+            "mac": "MacCtrl+Shift+Y"
+           },
+          "description": "Send a 'toggle-feature' event to the extension"
+        },
+        "_execute_browser_action": {
+          "suggested_key": {
+            "default": "Ctrl+Shift+3",
+            "mac": "MacCtrl+Shift+F"
+          }
+        }
+      },
+      "web_accessible_resources": [
+        "css/awesomplete.css",
+        "awesomplete.js",
+        "js/jquery-3.3.1.js",
+        "autofillDialog.html",
+        "elscript.js"
+        ],
+     "content_scripts": [
+     {
+       "matches": ["http://*/*", "https://*/*"], 
+       "css": ["css/awesomplete.css"],
+       "js": [ "js/awesomplete.js","js/jquery-3.3.1.js","contentScript.js"],  
+       "run_at": "document_end",
+       "all_frames": true 
+     }
+     ]
+
+  }
+
+
+  
